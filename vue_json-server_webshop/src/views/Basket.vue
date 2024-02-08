@@ -17,13 +17,45 @@
     axios.delete("http://localhost:3000/cart/" + item.id)
     .then(getBasket());
   }
+
+  const changeAmountItem = (value) => {
+    axios.put("http://localhost:3000/cart/" + item.id, 
+    {
+      id : item.id,
+      name : item.name, 
+      price: item.price, 
+      img : item.img,
+      amount: value.toString(),
+    })
+  }
 </script>
 
 <template>
   <div>
-    <h1>Kosár</h1>
-    <div>
-      <div v-for="item in basket" @click="removeFromBasket(item)">{{ item.name }}</div>
+    <div class="container">
+      <div class="row item_row">
+        <div class="col-sm-11 col-md-5 col-lg-2 item_div" v-for="item in basket">
+          <div><img src="../no-image.png" class="item_img"></div>
+          <div class="item_div_name">{{ item.name }}</div>
+          <div class="item_div_price">{{ item.price }}Ft</div>
+          <div class="item_div_other">
+            <input type="number" min="1" @change="changeAmountItem(value)" >
+            <button @click="removeFromBasket(item)">Kivétel a kosárból</button>
+          </div>
+        </div>
+      </div>      
     </div>
   </div>
 </template>
+
+
+<style>
+  .content{
+        text-align: center;
+    }
+
+    .item_img{
+        width: 90%;
+        margin: 5px;
+    }
+</style>
