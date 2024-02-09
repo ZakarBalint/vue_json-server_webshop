@@ -23,9 +23,40 @@
       "name": "szék",
       "price": "25000",
       "img": "no-image.png"
+    },
+    {
+      "id": "5",
+      "name": "dasdasd",
+      "price": "12312",
+      "img": "no-image.png"
+    },
+    {
+      "id": "6",
+      "name": "sadasd32",
+      "price": "213123",
+      "img": "no-image.png"
+    },
+    {
+      "id": "7",
+      "name": "qwdqwd",
+      "price": "1212",
+      "img": "no-image.png"
     }
   ],
   "cart": [
-    
+    {
+      "id": "5",
+      "name": "dasdasd",
+      "price": "12312",
+      "img": "no-image.png",
+      "amount": "4"
+    },
+    {
+      "id": "1",
+      "name": "elektromos kapu",
+      "price": "500000",
+      "img": "no-image.png",
+      "amount": "3"
+    }
   ]
 }

@@ -18,7 +18,7 @@
     .then(getBasket());
   }
 
-  const changeAmountItem = (value) => {
+  const changeAmountItem = (item, value) => {
     axios.put("http://localhost:3000/cart/" + item.id, 
     {
       id : item.id,
@@ -39,7 +39,7 @@
           <div class="item_div_name">{{ item.name }}</div>
           <div class="item_div_price">{{ item.price }}Ft</div>
           <div class="item_div_other">
-            <input type="number" min="1" @change="changeAmountItem(value)" v-model="item.amount">
+            <input type="number" min="1" @change="changeAmountItem(item, value)" v-model="item.amount">
             <button @click="removeFromBasket(item)">Kivétel a kosárból</button>
           </div>
         </div>

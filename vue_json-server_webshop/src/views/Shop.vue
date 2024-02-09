@@ -18,35 +18,38 @@ import axios from 'axios';
 
     axios.get("http://localhost:3000/cart")
     .then(resp => basket.value = resp.data)
+    .then(console.log("lekeres"));              
 
     let itemInBasket = null;
 
     basket.value.forEach(b_item => {
       if(b_item.id == item.id)
-      {
+      {        
         itemInBasket = b_item;        
       }
-    });    
+    });
 
-    if(itemInBasket != null)
+    basket.value.filters()
+
+    if(itemInBasket == null)
     {
+      console.log("új készítése" + itemInBasket)
+      axios.post("http://localhost:3000/cart",{
+        id : item.id,
+        name : item.name, 
+        price: item.price, 
+        img : item.img,
+        amount: "1"
+      });
+    }
+    else
+    {            
       axios.patch("http://localhost:3000/cart/" + itemInBasket.id,{
         id : itemInBasket.id,
         name : itemInBasket.name, 
         price: itemInBasket.price, 
         img : itemInBasket.img,       
         amount: (parseInt(itemInBasket.amount) + 1).toString()
-      });
-    }
-    else
-    {
-      console.log("új készítése")
-      axios.post("http://localhost:3000/cart",{
-      id : item.id,
-      name : item.name, 
-      price: item.price, 
-      img : item.img,
-      amount: "1"
       });
     }    
   }
