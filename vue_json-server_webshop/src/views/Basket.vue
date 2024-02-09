@@ -25,7 +25,7 @@
       name : item.name, 
       price: item.price, 
       img : item.img,
-      amount: value.toString(),
+      amount: value.toString()
     })
   }
 </script>
@@ -39,7 +39,7 @@
           <div class="item_div_name">{{ item.name }}</div>
           <div class="item_div_price">{{ item.price }}Ft</div>
           <div class="item_div_other">
-            <input type="number" min="1" @change="changeAmountItem(value)" >
+            <input type="number" min="1" @change="changeAmountItem(value)" v-model="item.amount">
             <button @click="removeFromBasket(item)">Kivétel a kosárból</button>
           </div>
         </div>

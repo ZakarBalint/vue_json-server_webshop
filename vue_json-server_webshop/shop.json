@@ -26,19 +26,6 @@
     }
   ],
   "cart": [
-    {
-      "id": "1",
-      "name": "elektromos kapu",
-      "price": "500000",
-      "img": "no-image.png",
-      "amount": "2"
-    },
-    {
-      "id": "1",
-      "name": "elektromos kapu",
-      "price": "500000",
-      "img": "no-image.png",
-      "amount": "1"
-    }
+    
   ]
 }

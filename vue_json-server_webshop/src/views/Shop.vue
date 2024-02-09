@@ -1,5 +1,6 @@
 <script setup>
-  import axios from 'axios';
+  import { createSimpleExpression } from '@vue/compiler-core';
+import axios from 'axios';
   import {ref, onMounted} from 'vue';
 
   const items = ref([]);
@@ -7,33 +8,28 @@
 
   onMounted(() => {
     axios.get("http://localhost:3000/products")
-    .then(resp => items.value = resp.data);    
+    .then(resp => items.value = resp.data);
+
+    axios.get("http://localhost:3000/cart")
+    .then(resp => basket.value = resp.data)
   })
 
-  const getBasket = async () =>{
-    const response = await axios.get("http://localhost:3000/cart");
-    basket.data = response.data;
-    console.log(basket.data);
-  }
-
   const addToBasket = (item) => {
-    
-    getBasket();
+
+    axios.get("http://localhost:3000/cart")
+    .then(resp => basket.value = resp.data)
+
     let itemInBasket = null;
 
-    basket.data.forEach(b_item => {
-      if(parseInt(b_item.id) == parseInt(item.id))
+    basket.value.forEach(b_item => {
+      if(b_item.id == item.id)
       {
-        itemInBasket = b_item;
-        console.log(itemInBasket);
-        return;
+        itemInBasket = b_item;        
       }
     });    
 
     if(itemInBasket != null)
     {
-      console.log(itemInBasket.amount);
-
       axios.patch("http://localhost:3000/cart/" + itemInBasket.id,{
         id : itemInBasket.id,
         name : itemInBasket.name, 

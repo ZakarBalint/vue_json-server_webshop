@@ -20,7 +20,7 @@
       id : (parseInt(items.value[items.value.length - 1].id) + 1).toString(),
       name : newItemNameValue.value, 
       price: newItemPriceValue.value.toString(), 
-      img : "no-image.png",
+      img : "no-image.png"
     })
     .then(getItems());
   }
